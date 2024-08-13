@@ -1,0 +1,8 @@
+---
+- name: Reload service nginx@{{ nginx_instance }}
+  ansible.builtin.systemd:
+    name: nginx@{{ nginx_instance }}.service
+    state: reloaded
+    enabled: true
+    daemon_reload: true
+  ignore_errors: '{{ ansible_check_mode }}'

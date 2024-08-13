@@ -1,0 +1,8 @@
+---
+nginx_multinstance:
+  default:
+    ports: [80]
+  first:
+    ports: [81]
+  second:
+    ports: [82]

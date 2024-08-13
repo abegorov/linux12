@@ -1,0 +1,8 @@
+---
+- name: Restart watchlog.timer
+  ansible.builtin.systemd:
+    name: watchlog.timer
+    state: restarted
+    enabled: true
+    daemon_reload: true
+  ignore_errors: '{{ ansible_check_mode }}'

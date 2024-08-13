@@ -1,0 +1,31 @@
+---
+- name: Add EPEL repository
+  ansible.builtin.dnf:
+    name: epel-release
+    state: present
+
+- name: Install spawn-fcgi
+  ansible.builtin.dnf:
+    name:
+      - spawn-fcgi
+      - httpd
+      - php-cli
+    state: present
+
+- name: Configure spawn-fcgi
+  ansible.builtin.template:
+    src: spawn-fcgi.conf
+    dest: /etc/sysconfig/spawn-fcgi
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart spawn-fcgi.service
+
+- name: Update spawn-fcgi service
+  ansible.builtin.template:
+    src: spawn-fcgi.service
+    dest: /etc/systemd/system/spawn-fcgi.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart spawn-fcgi.service

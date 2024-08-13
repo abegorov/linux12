@@ -1,0 +1,13 @@
+---
+- name: Vagrant provision playbook
+  hosts: all
+  become: true
+  gather_facts: false
+
+  roles:
+    - watchlog
+    - spawn-fcgi
+    - role: nginx-multinstance
+      nginx_instance: first
+    - role: nginx-multinstance
+      nginx_instance: second

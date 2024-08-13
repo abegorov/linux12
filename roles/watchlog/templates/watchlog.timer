@@ -1,0 +1,12 @@
+[Unit]
+Description=Run watchlog service every 30 second
+
+[Timer]
+# Run every 30 second
+OnCalendar=*-*-* *:*:00/30
+AccuracySec=1s
+RandomizedDelaySec=30
+FixedRandomDelay=true
+
+[Install]
+WantedBy=multi-user.target

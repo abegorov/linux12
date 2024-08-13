@@ -1,0 +1,42 @@
+---
+- name: Update watchlog config
+  ansible.builtin.template:
+    src: watchlog.default
+    dest: /etc/default/watchlog
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Update watchlog script
+  ansible.builtin.template:
+    src: watchlog.sh
+    dest: /usr/local/bin/watchlog.sh
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Generate watchlog log if not exists
+  ansible.builtin.template:
+    src: watchlog.log
+    dest: /var/log/watchlog.log
+    force: false
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Update watchlog service
+  ansible.builtin.template:
+    src: watchlog.service
+    dest: /etc/systemd/system/watchlog.service
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Update watchlog timer
+  ansible.builtin.template:
+    src: watchlog.timer
+    dest: /etc/systemd/system/watchlog.timer
+    owner: root
+    group: root
+    mode: '0755'
+  notify: Restart watchlog.timer

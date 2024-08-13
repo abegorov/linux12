@@ -1,0 +1,8 @@
+---
+- name: Restart spawn-fcgi.service
+  ansible.builtin.systemd:
+    name: spawn-fcgi.service
+    state: restarted
+    enabled: true
+    daemon_reload: true
+  ignore_errors: '{{ ansible_check_mode }}'

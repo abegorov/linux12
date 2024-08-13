@@ -1,0 +1,4 @@
+INFO: This is default log file for watchlog service
+INFO: Default log start
+ALERT: Default alert message to test watchlog service
+INFO: Default log end
